@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Para ti</title>
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3IDYiIHNoYXBlLXJlbmRlcmluZz0iY3Jpc3BFZGdlcyI+PGcgZmlsbD0iI0UwNUM5MyI+PHJlY3QgeD0iMSIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIvPjxyZWN0IHg9IjIiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiLz48cmVjdCB4PSI0IiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIi8+PHJlY3QgeD0iNSIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIvPjxyZWN0IHg9IjAiIHk9IjEiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiLz48cmVjdCB4PSIxIiB5PSIxIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIi8+PHJlY3QgeD0iMiIgeT0iMSIgd2lkdGg9IjEiIGhlaWdodD0iMSIvPjxyZWN0IHg9IjMiIHk9IjEiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiLz48cmVjdCB4PSI0IiB5PSIxIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIi8+PHJlY3QgeD0iNSIgeT0iMSIgd2lkdGg9IjEiIGhlaWdodD0iMSIvPjxyZWN0IHg9IjYiIHk9IjEiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiLz48cmVjdCB4PSIwIiB5PSIyIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIi8+PHJlY3QgeD0iMSIgeT0iMiIgd2lkdGg9IjEiIGhlaWdodD0iMSIvPjxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiLz48cmVjdCB4PSIzIiB5PSIyIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIi8+PHJlY3QgeD0iNCIgeT0iMiIgd2lkdGg9IjEiIGhlaWdodD0iMSIvPjxyZWN0IHg9IjUiIHk9IjIiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiLz48cmVjdCB4PSI2IiB5PSIyIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIi8+PHJlY3QgeD0iMSIgeT0iMyIgd2lkdGg9IjEiIGhlaWdodD0iMSIvPjxyZWN0IHg9IjIiIHk9IjMiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIi8+PHJlY3QgeD0iNCIgeT0iMyIgd2lkdGg9IjEiIGhlaWdodD0iMSIvPjxyZWN0IHg9IjUiIHk9IjMiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiLz48cmVjdCB4PSIyIiB5PSI0IiB3aWR0aD0iMSIgaGVpZ2h0PSIxIi8+PHJlY3QgeD0iMyIgeT0iNCIgd2lkdGg9IjEiIGhlaWdodD0iMSIvPjxyZWN0IHg9IjQiIHk9IjQiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiLz48cmVjdCB4PSIzIiB5PSI1IiB3aWR0aD0iMSIgaGVpZ2h0PSIxIi8+PC9nPjwvc3ZnPg==">
+<meta property="og:title" content="Para ti">
+<meta property="og:description" content="9 meses juntos">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://k3non-prog.github.io/bobia.../og.png">
+<meta name="twitter:card" content="summary_large_image">
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -46,7 +52,7 @@
     width:320px;background:var(--crema);border:3px solid var(--ciruela);box-shadow:6px 6px 0 var(--ciruela);
     display:none;
   }
-  .win.show{display:block}
+  .win.show{display:block;animation:entraWin .32s steps(4) both}
   .win .bar{
     background:linear-gradient(90deg,var(--rosa),var(--lila));color:var(--ciruela);
     font-family:'Press Start 2P',monospace;font-size:12px;padding:6px 8px;display:flex;justify-content:space-between;
@@ -62,7 +68,7 @@
     position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;
     background:rgba(58,26,46,.9);color:var(--rosa);text-align:center;
   }
-  #counter.show{display:flex}
+  #counter.show{display:flex;animation:entra .5s steps(5) both}
   #contador{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(6px,2.4vw,30px);padding:0 8px;
     font-family:'Press Start 2P',monospace;text-align:center;font-variant-numeric:tabular-nums}
   #contador .u{display:flex;flex-direction:column;align-items:center;gap:12px;min-width:3.4em}
@@ -126,9 +132,17 @@
   .sobre-ala.der{transform-origin:0 45%}
   @keyframes flota{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
   @keyframes aleteo{from{transform:scaleY(1)}to{transform:scaleY(.45)}}
+  @keyframes entra{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  /* la ventana ya va centrada con translate: la animación conserva ese centrado */
+  @keyframes entraWin{from{opacity:0;transform:translate(-50%,calc(-50% + 14px))}to{opacity:1;transform:translate(-50%,-50%)}}
+  @keyframes salir{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-16px) scale(.92)}}
+  /* al tocar el sobre se hunde un poco: confirma el toque */
+  .sobre{transition:scale .12s steps(2)}
+  .sobre:active{scale:.94}
+  .sobre.salir,.sobre-label.salir{animation:salir .24s steps(3) forwards}
   .sobre-label{font-size:clamp(22px,6vw,28px);margin:0 0 14px;text-align:center;color:#000;background:var(--crema);border:3px solid var(--ciruela);box-shadow:4px 4px 0 var(--ciruela);padding:6px 14px;display:inline-block}
   .nota{display:none;width:min(340px,86vw);background:var(--crema);border:3px solid var(--ciruela);box-shadow:6px 6px 0 var(--ciruela)}
-  .nota.show{display:block}
+  .nota.show{display:block;animation:entra .32s steps(4) both}
   .nota .bar{background:linear-gradient(90deg,var(--rosa),var(--lila));color:var(--ciruela);font-family:'Press Start 2P',monospace;font-size:12px;padding:6px 8px;display:flex;justify-content:space-between}
   .nota-body{padding:16px 16px 20px;font-size:26px;line-height:1.2;min-height:150px;white-space:pre-wrap;user-select:text;cursor:text}
   /* reproductor fijo */
@@ -172,14 +186,42 @@
     *,*::before,*::after{transition-duration:.01ms!important;transition-delay:0s!important;animation:none!important;scroll-behavior:auto!important}
     .click-zone .ring{opacity:1;transform:scale(1.4)}
   }
+
+  /* ---- mejoras de diseño ---- */
+  #tinte{position:fixed;inset:0;pointer-events:none;z-index:0}
+  #tinte.atardecer{background:rgba(255,150,120,.14)}
+  #tinte.noche{background:rgba(60,40,110,.36)}
+  #progreso{display:none;position:fixed;top:0;right:0;height:44px;box-sizing:border-box;z-index:31;align-items:center;gap:4px;padding:0 12px;background:var(--lila);border-bottom:3px solid var(--ciruela)}
+  html.scroll #progreso{display:flex}
+  #progreso .seg{width:12px;height:12px;border:2px solid var(--ciruela);background:var(--crema)}
+  #progreso .seg.on{background:var(--rosa-int)}
+  #progreso #progMes{font-family:'Press Start 2P',monospace;font-size:10px;color:var(--ciruela);margin-left:6px;min-width:34px}
+  #pista{position:fixed;left:50%;bottom:22px;z-index:9;display:none;pointer-events:none;transform:translateX(-50%);color:var(--rosa-int)}
+  #pista.on{display:block;animation:bobPista 1s steps(2) infinite}
+  @keyframes bobPista{0%{transform:translate(-50%,0)} 50%{transform:translate(-50%,6px)} 100%{transform:translate(-50%,0)}}
+  .prox .prox-txt{margin:22px 0 0;border:3px dashed var(--ciruela);padding:22px 14px;text-align:center;font-family:'Press Start 2P',monospace;font-size:12px;color:var(--ciruela);background:var(--crema)}
+  #zoom{position:fixed;inset:0;z-index:40;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(58,26,46,.82);cursor:pointer}
+  #zoom.show{display:flex}
+  #zoom figure{margin:0;background:var(--crema);border:4px solid var(--ciruela);box-shadow:8px 8px 0 var(--rosa-int);padding:8px;max-width:min(560px,92vw);animation:entra .3s steps(4) both}
+  #zoom img{display:block;width:100%;height:auto;max-height:72vh;object-fit:contain}
+  #zoom figcaption{font-family:'Press Start 2P',monospace;font-size:10px;color:var(--ciruela);padding:10px 2px 2px;text-align:center}
+  .foto{cursor:zoom-in}
+  #besito{position:relative}
+  .burbuja{position:absolute;pointer-events:none;animation:volar 1.4s steps(7) both}
+  @keyframes volar{from{opacity:1;transform:translate(0,0)} to{opacity:0;transform:translate(var(--dx),-140px)}}
+  .nota{position:relative}
+  .nota.listo .nota-body{padding-bottom:58px}
+  .sello{position:absolute;left:12px;bottom:12px;background:var(--crema);border:3px solid var(--rosa-int);padding:6px 8px;transform:rotate(-8deg);animation:entra .3s steps(3) both;pointer-events:none}
 </style>
 </head>
 <body>
 <canvas id="bg"></canvas>
+<div id="tinte" aria-hidden="true"></div>
 <canvas id="trees"></canvas>
 <canvas id="pets"></canvas>
 <canvas id="fx"></canvas>
 <button id="replay" type="button">&lt; REPETIR</button>
+<div id="progreso" aria-hidden="true"></div>
 <div class="stage" id="stage" tabindex="0" role="button" aria-label="Seguir">
   <div id="kenonWrap">
     <div class="bubble" id="bubble1"></div>
@@ -213,7 +255,7 @@
     <div class="sprite-carta" id="kenonCarta"></div>
     <div class="carta-caja">
       <p class="sobre-label" id="sobreLabel">Toca el sobre</p>
-      <div class="sobre" id="sobre" role="button" tabindex="0" aria-label="Abrir la carta"><img class="sobre-ala izq" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXQAAACcCAYAAABvA1AIAAAB40lEQVR42u3csQ2CQBSA4XeGytLC0poSo0NQO4GFA1gZRqB0AGewZgkjM1i6BM5wRgIm31djkLvkz6teikxV3QwxI33XpgAgFo4AQNABEHQABB0AQQcQdAAEHQBBB0DQAQQdAEEHYEpF7m6W5/0yqw/YHmKw+wXAhA4g6AAIOgCCDoCgAwg6AIIOgKADIOgAgg6AoAMwseLfPyB3t0xatm4dMKEDIOgACDoAgg4g6AAIOgCCDoCgAwi6IwAQdAAEHYBfS7k/qOpmiBF3rTxe76znd5t15i6XVXLtgAkdAEEHQNABEHQAQQdA0AEQdAAEHUDQARB0AAQdgJh4l0uMvPvldj2O+n/2ZWmXC2BCB0DQARB0AAQdQNABEHQABB0AQQcQdEcAIOgACDoAgg6AoAMIOgCCDoCgAyDoAIIOgKADIOgACDoAgg4g6ADMTzH2C/quTTnPn84xuBYAEzqAoAMg6AAIOgCCDoCgAwg6AIIOgKADIOgAgg4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMCXPp0mHYuF37TBAAAAAElFTkSuQmCC"><img class="sobre-ala der" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXQAAACcCAYAAABvA1AIAAAB0klEQVR42u3csQnCQBiG4e/EGSydIcElUmcYcYTgMNZZQswMli4RZ7hCPOPz1EcICbz8XPGXAJAk6YbL2tL7LPNUas7v/EKAbRB0AEEHQNABEHQABB1A0AEQdAAEHQBBBxB0AH7V3icAYjdLkuRxOzf1/v2Y1YQOEFcuAAg6AIIOgKADIOgAgg6AoAMg6AAIOoCgAxC7XAC+q7XdLCZ0AAQdQNABEHQABB0AQQdA0AEEHQBBB0DQARB0gNjlAvAH7s9X1fnT8VB1vh+vVeeXeSomdIC4cgFA0AEQdAAEHQBBBxB0AAQdAEEHQNABBB2A2OUCkJ/azVLr07tZTOgAceUCgKADIOgACDoAgg4g6AAIOgCCDoCgAwg6AIIOgKADIOgAgg6AoAMg6AAIOgCCDiDoAAg6AIIOgKAD/JfiEwBb1Q2X9ZPPX+apmNABEHQABB1A0AEQdAAEHQBBBxB0AAQdAEEHQNABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACa8wYiBBvbSzL+vQAAAABJRU5ErkJggg=="><img class="sobre-cuerpo" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXQAAACcCAYAAABvA1AIAAACqUlEQVR42u3cMUoDQQCF4RfxKB5ASSc5gHVKzyBoJVYWqcRKwQNYWcnWHmCxC3oAK0svoSdQGHB0Zvf76pDE2fgz1VtkZvaPLj4DzMLr09ViTn/vjkcOIOgACDoAgg6AoAMIOgCCDoCgAyDoAIIOgKAD8J92HcHPXoZzhwCNOFhfOwQ3dABBB0DQARB0AAQdQNABEHQABB0AQQdA0AEEHYDYcunT7cNz0etPjw8dGlT6/8INHUDQARB0AAQdAEEHEHQABB0AQQdA0AEQdABBByC2XGKbIrZf8PvHDR0AQQcQdAAEHQBBB0DQAQQdAEEHQNABEHQABB0gtlyI7ZdfsF1fVn3/5bDp+vvYZsENHQBBBxB0AAQdAEEHQNABBB0AQQdA0AEQdABBByC2XMgct19Kt1Bqb5vU3mbp/Xxss7ihAyDoAAg6AIIOIOgACDoAgg6AoAMg6ACCDoCgAxBbLmQK2y/pfJul9+eLGzoAgg6AoAMg6ACCDoCgAyDoAAg6AIIOIOgACDoAseVCmtx+GTaxzfK9ZeH52GbBDR0AQQcQdAAEHQBBB0DQAQQdAEEHQNABEHQAQQcgtlyYhNVqr+j12/ePsg+4OSl7/dldWwdU+P1Lz6f0/MfxzY8WN3QAQQdA0AEQdAAEHUDQARB0AAQdAEEHEHQABB2A2HIhzW2zNKf29kvp+3f+fG2/uKEDIOgACDoAgg4g6AAIOgCCDoCgAyDoAIIOgKADEFsuJJnANksa237x+4ntFzd0AAQdAEEHQNABBB0AQQdA0AEQdABBB0DQARB0AGLLJbZZwPYLbugAgg6AoAMg6AAIOoCgAyDoAAg6AIIOIOgACDoAseXSgfvHsev3B9zQARB0AAQdAEEHEHQABB0AQQdA0AEQdABBB0DQAfgTXxp1V8oZlNvHAAAAAElFTkSuQmCC"></div>
+      <div class="sobre" id="sobre" role="button" tabindex="0" aria-label="Abrir la carta"><img class="sobre-ala izq" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXQAAACcCAYAAABvA1AIAAACeElEQVR4Xu3csW0bQRBAUdJgDQrdggiXoZi1CCpBcC2KVYYhteBQTcipnBgY8I7kfb8XE0cucfOx0ex2AAAAAAAAAAAAAAAAAAAAAACca3/uA67t/uHp89q/4av31+fN/6dwKeZ3Wd+WfRwA1yLoABGCDhAh6AARgg4QIegAEYIOECHoABGCDhAh6AARgg4QcVj7HGvvanh7eVz7CCPH027V3TJ2xXBJ5ndZa8+vGzpAhKADRAg6QISgA0QIOkCEoANECDpAhKADRAg6QISgA0QIOkDEfnqO/223w9qOp5+rfsXauyPYFvO7rFubXzd0gAhBB4gQdIAIQQeIEHSACEEHiBB0gAhBB4gQdIAIQQeIEHSAiL3dDtsy3R1hlwtfTef97eXRH7ig6fxOuaEDRAg6QISgA0QIOkCEoANECDpAhKADRAg6QISgA0QIOkCEoANEHKbnsNthWb9+fyz7QFjQ9P388f1uwW/vmfZzuvvFDR0gQtABIgQdIELQASIEHSBC0AEiBB0gQtABIgQdIELQASIEHSDi8P76vJ+c5XjafU4+PzXddXBrprsvoGT6/m9998t018rUtM9u6AARgg4QIegAEYIOECHoABGCDhAh6AARgg4QIegAEYIOECHoABGjPS6XcP/wtOqumK2b7naAc5jHf7u1eXRDB4gQdIAIQQeIEHSACEEHiBB0gAhBB4gQdIAIQQeIEHSACEEHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/vIHRXRSTg7KjdgAAAAASUVORK5CYII="><img class="sobre-ala der" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXQAAACcCAYAAABvA1AIAAACeElEQVR4Xu3csW0bQRBAUdJgDQrdggiXoZi1CCpBcC2KVYYhteBQTcipnBgY8I7kfb8XE0cucfOx0ex2AAAAAAAAAAAAAAAAAAAAAACca3/uA67t/uHp89q/4av31+fN/6dwKeZ3Wd+WfRwA1yLoABGCDhAh6AARgg4QIegAEYIOECHoABGCDhAh6AARgg4QcVj7HGvvanh7eVz7CCPH027V3TJ2xXBJ5ndZa8+vGzpAhKADRAg6QISgA0QIOkCEoANECDpAhKADRAg6QISgA0QIOkDEfnqO/223w9qOp5+rfsXauyPYFvO7rFubXzd0gAhBB4gQdIAIQQeIEHSACEEHiBB0gAhBB4gQdIAIQQeIEHSAiL3dDtsy3R1hlwtfTef97eXRH7ig6fxOuaEDRAg6QISgA0QIOkCEoANECDpAhKADRAg6QISgA0QIOkCEoANEHKbnsNthWb9+fyz7QFjQ9P388f1uwW/vmfZzuvvFDR0gQtABIgQdIELQASIEHSBC0AEiBB0gQtABIgQdIELQASIEHSDi8P76vJ+c5XjafU4+PzXddXBrprsvoGT6/m9998t018rUtM9u6AARgg4QIegAEYIOECHoABGCDhAh6AARgg4QIegAEYIOECHoABGjPS6XcP/wtOqumK2b7naAc5jHf7u1eXRDB4gQdIAIQQeIEHSACEEHiBB0gAhBB4gQdIAIQQeIEHSACEEHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/vIHRXRSTg7KjdgAAAAASUVORK5CYII="><img class="sobre-cuerpo" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXQAAACcCAYAAABvA1AIAAACqUlEQVR42u3cMUoDQQCF4RfxKB5ASSc5gHVKzyBoJVYWqcRKwQNYWcnWHmCxC3oAK0svoSdQGHB0Zvf76pDE2fgz1VtkZvaPLj4DzMLr09ViTn/vjkcOIOgACDoAgg6AoAMIOgCCDoCgAyDoAIIOgKAD8J92HcHPXoZzhwCNOFhfOwQ3dABBB0DQARB0AAQdQNABEHQABB0AQQdA0AEEHYDYcunT7cNz0etPjw8dGlT6/8INHUDQARB0AAQdAEEHEHQABB0AQQdA0AEQdABBByC2XGKbIrZf8PvHDR0AQQcQdAAEHQBBB0DQAQQdAEEHQNABEHQABB0gtlyI7ZdfsF1fVn3/5bDp+vvYZsENHQBBBxB0AAQdAEEHQNABBB0AQQdA0AEQdABBByC2XMgct19Kt1Bqb5vU3mbp/Xxss7ihAyDoAAg6AIIOIOgACDoAgg6AoAMg6ACCDoCgAxBbLmQK2y/pfJul9+eLGzoAgg6AoAMg6ACCDoCgAyDoAAg6AIIOIOgACDoAseVCmtx+GTaxzfK9ZeH52GbBDR0AQQcQdAAEHQBBB0DQAQQdAEEHQNABEHQAQQcgtlyYhNVqr+j12/ePsg+4OSl7/dldWwdU+P1Lz6f0/MfxzY8WN3QAQQdA0AEQdAAEHUDQARB0AAQdAEEHEHQABB2A2HIhzW2zNKf29kvp+3f+fG2/uKEDIOgACDoAgg4g6AAIOgCCDoCgAyDoAIIOgKADEFsuJJnANksa237x+4ntFzd0AAQdAEEHQNABBB0AQQdA0AEQdABBB0DQARB0AGLLJbZZwPYLbugAgg6AoAMg6AAIOoCgAyDoAAg6AIIOIOgACDoAseXSgfvHsev3B9zQARB0AAQdAEEHEHQABB0AQQdA0AEQdABBB0DQAfgTXxp1V8oZlNvHAAAAAElFTkSuQmCC"></div>
       </div>
             <div class="nota" id="nota">
         <div class="bar"><span>para bobia.txt</span></div>
@@ -226,6 +268,7 @@
   <div id="besito" role="img" aria-label="Nosotros dándonos un beso"></div>
   <p id="cierre">Te amo mucho mucho muchito muchote mucho</p>
 </section>
+<div id="pista" aria-hidden="true"><svg width="30" height="18" viewBox="0 0 5 3" shape-rendering="crispEdges"><g fill="currentColor"><rect x="0" y="0" width="5" height="1"/><rect x="1" y="1" width="3" height="1"/><rect x="2" y="2" width="1" height="1"/></g></svg></div>
 <div id="player">
   <div class="bar"><span><img class="nota-icono" alt="Música" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAUCAYAAAC9BQwsAAAA8ElEQVR42sWSS1LDMBBE34x8Csx5HGLnugkUd4ByTFJcIMotpGZhx1U4P4cNvVTpqdUzbZI4UxbVaqVkTlDmfbO26RXnjpJDVTd6GDxpCt8FQ4au686cZzk6md32k2RhhGeB8RAtyNlvP0bnYg5oguMhWlmW+m7bx4YDEGMc11LwoI6HHnb+qP8CJ4WS9wcuuwoWADJY1Esl62cVlEkOIlHkG2DVNHrbvJoDi7qRDAZTdl0LF4y9qpfjRxf1Umlm6uIU86VplNwJAsh8bbubk/tVgCDYtx1YHh7o81+uocTTc6l7TbkICigncByAawv5AW4NbQHrykoZAAAAAElFTkSuQmCC"></span><button id="plToggle" type="button" aria-expanded="true" aria-label="Minimizar reproductor">_</button></div>
   <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/72sfmdpuO5r8cBDgs7MqZZ?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" title="Love - Wave to Earth en Spotify"></iframe>
@@ -327,15 +370,19 @@ function bouquetCells(){
   const fill=(cx,cy,rx,ry,c)=>{ for(let y=Math.floor(cy-ry-1);y<=Math.ceil(cy+ry+1);y++) for(let x=Math.floor(cx-rx-1);x<=Math.ceil(cx+rx+1);x++){ if(inEll(x+0.5,y+0.5,cx,cy,rx,ry)) put(x,y,typeof c==='function'? c(x,y) : c); } };
   const line=(x0,y0,x1,y1,c)=>{ const N=Math.max(Math.abs(x1-x0),Math.abs(y1-y0),1); for(let i=0;i<=N;i++) put(x0+(x1-x0)*i/N, y0+(y1-y0)*i/N, c); };
   const tulips=[[6,14],[13,10],[20,6],[27,10],[34,14]], petunias=[[4,22],[10,21],[16,19],[24,19],[30,21],[35,22],[13,26],[27,26],[20,23]];
+  // sombra del ramo sobre el suelo
+  fill(20,41.6,9,1.2,'rgba(58,26,46,0.25)');
   // hojas
   fill(13,31,3.4,1.3,BQ_LEAF); fill(27,31,3.4,1.3,BQ_LEAF); fill(20,27,2.4,1.1,BQ_LEAF);
   // tallos desde el punto de amarre
   tulips.forEach(([x,y])=> line(20,39,x,y+4,BQ_STEM));
   petunias.forEach(([x,y])=> line(20,39,x,y+2,BQ_STEM));
   // tulipanes: copa con tres puntas
+  const TUL = ['X.XXX.X','XXXXXXX','XXXXXXX','.XXXXX.','.XXXXX.','..XXX..'];
   tulips.forEach(([x,y])=>{
-    fill(x,y+1,3,2.6,(px,py)=> px<x-0.5 ? BQ_TUL_L : BQ_TUL);
-    fill(x-2,y-1,1.2,1.8,BQ_TUL); fill(x+2,y-1,1.2,1.8,BQ_TUL); fill(x,y-1.5,1.2,2.1,BQ_TUL);
+    TUL.forEach((row,ry)=>[...row].forEach((ch,rx)=>{
+      if(ch === 'X') put(x-3+rx, y-2+ry, rx <= 2 ? BQ_TUL_L : BQ_TUL);
+    }));
   });
   // petunias: cinco pétalos alrededor de una garganta
   petunias.forEach(([x,y],k)=>{
@@ -441,6 +488,8 @@ document.getElementById('replay').addEventListener('click', ()=>{
   document.documentElement.classList.remove('scroll');
   document.getElementById('stage').classList.remove('flow');
   window.scrollTo(0,0);
+  clearTimeout(openTimer); sobre.classList.remove('salir'); sobreLabel.classList.remove('salir');
+  nota.classList.remove('listo'); nota.querySelectorAll('.sello').forEach(x=>x.remove());
   nota.classList.remove('show'); sobre.style.display=''; sobreLabel.style.display=''; letterOpen=false; clearInterval(letterTimer); cartaTexto.textContent='';
   clearInterval(counterTimer); counterTimer = null;
   clearInterval(typeTimer); typing = false;
@@ -707,21 +756,48 @@ function stepTo(p, dt){
   if(Math.abs(dx) > 0.3) p.dir = Math.sign(dx);
   p.hopT += dt*10;
 }
+// separa a un animal de otro si sus cuerpos se encimarían; solo se mueve el primero
+function separate(p, o, dt){
+  const cx = p.x + p.w/2, cy = p.y - p.h/2, ox = o.x + o.w/2, oy = o.y - o.h/2;
+  const ovx = (p.w + o.w)/2 + 3 - Math.abs(cx - ox);
+  const ovy = (p.h + o.h)/2 + 1 - Math.abs(cy - oy);
+  if(ovx <= 0 || ovy <= 0) return;
+  const k = Math.min(1, 25*dt);
+  if(ovx/(p.w + o.w) < ovy/(p.h + o.h)) p.x += (cx >= ox ? 1 : -1) * ovx * k;
+  else p.y += (cy >= oy ? 1 : -1) * ovy * k;
+  const g = groundY();
+  p.x = Math.max(0, Math.min(COLS - p.w - 1, p.x));
+  p.y = Math.max(g.min, Math.min(FEET, p.y));
+}
+// punto de huida: en la mitad contraria a donde está el gato (así cruza el centro),
+// y entre varias opciones elige la que queda más lejos de los otros dos cuyos
+function fleeSpot(A, cat, others){
+  const g = groundY();
+  const catRight = cat.x + cat.w/2 >= COLS/2;
+  let best = null, bestD = -1;
+  for(let i = 0; i < 6; i++){
+    const x = catRight ? 4 + Math.random()*(COLS/2 - A.w - 8) : COLS/2 + Math.random()*(COLS/2 - A.w - 4);
+    const y = g.min + Math.random()*(g.max - g.min);
+    const d = Math.min(...others.map(o => Math.hypot((x + A.w/2) - (o.x + o.w/2), (y - o.y) * 1.5)));
+    if(d > bestD){ bestD = d; best = {x, y}; }
+  }
+  return best;
+}
 function stepPets(dt){
   const P = pets, W = COLS, g = groundY();
   const cat = P.cat, A = P.cuyoA, B = P.cuyoB, Cc = P.cuyoC;
   const rnd = (a,b)=> a + Math.random()*(b-a);
   const rndX = ()=> (Math.random()<0.5) ? W*(0.3 + 0.4*Math.random()) : W*(0.04 + 0.92*Math.random());
   const rndY = ()=> g.min + Math.random()*(g.max - g.min);
-  // cuyo A: si el gato está cerca huye a otro punto del suelo; si no, vaga
+  const others = [B, Cc];
+  // cuyo A: si el gato está cerca huye al otro lado del campo; si no, vaga
   A.wait -= dt;
   const dCatA = Math.hypot(A.x - cat.x, A.y - cat.y);
   if(A.wait <= 0 || !A.moving){
     if(dCatA < 40){
-      const side = Math.sign(A.x - cat.x) || 1;
-      A.tx = Math.max(4, Math.min(W - A.w - 4, A.x + side*(30 + Math.random()*40)));
-      A.ty = rndY();
-    } else { A.tx = rndX(); A.ty = rndY(); }   // A también cruza el centro
+      const f = fleeSpot(A, cat, others);
+      A.tx = f.x; A.ty = f.y;
+    } else { A.tx = rndX(); A.ty = rndY(); }
     A.wait = rnd(1.2, 2.6);
   }
   stepTo(A, dt);
@@ -729,8 +805,10 @@ function stepPets(dt){
   const dx = A.x - cat.x, dy = A.y - cat.y, dist = Math.hypot(dx, dy);
   if(dist > 6){ cat.play = false; cat.tx = A.x - dx/dist*5; cat.ty = A.y - dy/dist*5; stepTo(cat, dt); }
   else { cat.play = true; cat.moving = false; cat.hopT += dt*7; if(Math.abs(dx) > 0.5) cat.dir = Math.sign(dx); }
+  // el gato y cuyo A no se enciman con los otros dos cuyos
+  for(let r = 0; r < 2; r++) for(const o of others){ separate(A, o, dt); separate(cat, o, dt); }
   // cuyos B y C dan vueltas por todo el suelo
-  for(const q of [B, Cc]){
+  for(const q of others){
     q.wait -= dt;
     if(q.wait <= 0 || !q.moving){ q.tx = rndX(); q.ty = rndY(); q.wait = rnd(2, 4.5); }
     stepTo(q, dt);
@@ -866,10 +944,20 @@ MESES.forEach(([k,nombre],i)=>{
     const ph = document.createElement('div'); ph.className = 'ph';
     ph.style.aspectRatio = f.w + ' / ' + f.h;          // el marco toma la proporción de la foto
     const img = new Image(); img.src = f.src; img.alt = 'Foto ' + (k+1) + ' de ' + nombre.toLowerCase(); img.loading = 'lazy';
-    ph.appendChild(img); fig.appendChild(ph); grid.appendChild(fig); revealObs.observe(fig);
+    ph.appendChild(img); fig.appendChild(ph); grid.appendChild(fig);
+    fig.style.transitionDelay = (Math.min(k, 2) * 120) + 'ms';   // secuencia corta dentro del mes
+    fig.tabIndex = 0; fig.setAttribute('role','button'); fig.setAttribute('aria-label','Ampliar foto ' + (k+1) + ' de ' + nombre.toLowerCase());
+    const abrir = ()=> abrirFoto(f.src, img.alt, nombre + ' · ' + (k+1) + ' de ' + fotos.length);
+    fig.addEventListener('click', abrir);
+    fig.addEventListener('keydown', e=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); abrir(); } });
+    revealObs.observe(fig);
   });
   sec.appendChild(grid); niveles.appendChild(sec);
 });
+const prox = document.createElement('div'); prox.className = 'nivel prox';
+prox.innerHTML = '<div class="nivel-head"><span class="mes">NOVIEMBRE</span><span class="corazon"></span></div><p class="prox-txt">Próximamente</p>';
+prox.querySelector('.corazon').appendChild(pixelHeart());
+niveles.appendChild(prox);
 
 // personaje sosteniendo la carta: usa la misma hoja de sprites
 const kc = document.getElementById('kenonCarta');
@@ -878,26 +966,35 @@ kc.style.backgroundImage = getComputedStyle(kenon).backgroundImage;
   setInterval(()=>{ k=(k+1)%IDLE.length; kc.style.backgroundPosition = (-IDLE[k]*FW)+'px 0'; }, 420); })();
 
 // carta
-const LETTER = "Estas son solo algunas de las muchas fotos que tenemos y de las que me quiero tomar contigo de aqui a los proximos años amor, y por ahora puedo decirte que todo este tiempo me has hecho muy muy feliz bobia, no sabes lo afortunado que me siento de tener a alguien tan linda en mi vida, cada vez que te veo me enamoro más y me dan ganas de besukearte. No puedo mas que agradecerte por todo lo que haces por mi y por lo mucho que me amas. Y yo planeo intentar hacerte feliz siempre siempre.\nMUAK\nP.D. Te extraño te voy a manosear cuando te vea muak";
+const LETTER = "Estas son solo algunas de las fotos que tenemos y de las muchas que me quiero tomar contigo de aqui a los proximos años amor, y por ahora puedo decirte que todo este tiempo me has hecho muy muy feliz bobia, no sabes lo afortunado que me siento de tener a alguien tan linda en mi vida, cada vez que te veo me enamoro más y me dan ganas de besukearte. No puedo mas que agradecerte por todo lo que haces por mi y por lo mucho que me amas. Y yo planeo intentar hacerte feliz siempre siempre.\nMUAK\nP.D. Te extraño te voy a manosear cuando te vea muak";
 const sobre = document.getElementById('sobre'), sobreLabel = document.getElementById('sobreLabel');
 const nota = document.getElementById('nota'), cartaTexto = document.getElementById('cartaTexto');
 let letterOpen = false, letterTimer = null;
+let openTimer = null;
 function openLetter(){
   if(letterOpen) return; letterOpen = true;
-  sobre.style.display = 'none'; sobreLabel.style.display = 'none';
-  nota.classList.add('show');
-  let i = 0; clearInterval(letterTimer);
-  letterTimer = setInterval(()=>{ i++; cartaTexto.textContent = LETTER.slice(0,i); if(i>=LETTER.length) clearInterval(letterTimer); }, 30);
-  nota.scrollIntoView({block:'center', behavior:'smooth'});
+  prepararSonido();
+  // el sobre se hunde y se desvanece; luego aparece la ventana de la carta
+  sobre.classList.add('salir'); sobreLabel.classList.add('salir');
+  openTimer = setTimeout(()=>{
+    sobre.style.display = 'none'; sobreLabel.style.display = 'none';
+    sobre.classList.remove('salir'); sobreLabel.classList.remove('salir');
+    nota.classList.add('show');
+    let i = 0; clearInterval(letterTimer);
+    letterTimer = setInterval(()=>{ i++; cartaTexto.textContent = LETTER.slice(0,i); if(i%2===0) tic(); if(i>=LETTER.length){ clearInterval(letterTimer); sellar(); } }, 30);
+    nota.scrollIntoView({block:'center', behavior:'smooth'});
+  }, (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) ? 0 : 240);
 }
 // tocar el texto termina de escribirlo de una vez
-cartaTexto.addEventListener('click', e=>{ e.stopPropagation(); if(letterOpen){ clearInterval(letterTimer); cartaTexto.textContent = LETTER; } });
+cartaTexto.addEventListener('click', e=>{ e.stopPropagation(); if(letterOpen){ clearInterval(letterTimer); cartaTexto.textContent = LETTER; sellar(); } });
 sobre.addEventListener('click', openLetter);
 sobre.addEventListener('keydown', e=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); openLetter(); } });
 
 // al terminar el contador, la página se puede deslizar
 function enterScroll(){
   document.documentElement.classList.add('scroll');
+  document.getElementById('pista').classList.add('on');
+  actualizarProgreso();
   document.getElementById('stage').classList.add('flow');
 }
 
@@ -906,12 +1003,13 @@ function enterScroll(){
   const BESO_N = 8, BESO_MS = 260;
   const el = document.getElementById('besito');
   if(!el) return;
-  let t = null, i = 0;
+  let t = null, i = 0, burst = false;
   const pos = k => (k * 100 / (BESO_N - 1)) + '% 0';
   el.style.backgroundPosition = pos(0);
   const obs = new IntersectionObserver(es => es.forEach(e => {
     clearInterval(t); t = null;
     if(e.isIntersecting && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)){
+      if(!burst){ burst = true; soltarCorazones(el); }
       t = setInterval(() => { i = (i + 1) % BESO_N; el.style.backgroundPosition = pos(i); }, BESO_MS);
     }
   }), {threshold: 0.3});
@@ -932,6 +1030,78 @@ function enterScroll(){
   set(window.innerWidth < 600);
   btn.addEventListener('click', e => { e.stopPropagation(); set(!pl.classList.contains('mini')); });
 })();
+
+/* ===== mejoras de diseño ===== */
+// corazones que vuelan una vez al llegar al beso
+function soltarCorazones(host){
+  for(let i = 0; i < 8; i++){
+    const h = pixelHeart();
+    h.classList.add('burbuja');
+    h.style.left = (40 + Math.random()*20) + '%';
+    h.style.top = (30 + Math.random()*20) + '%';
+    h.style.setProperty('--dx', ((Math.random()-0.5)*90) + 'px');
+    h.style.animationDelay = (i*90) + 'ms';
+    host.appendChild(h);
+    setTimeout(()=> h.remove(), 1800 + i*90);
+  }
+}
+// visor de foto ampliada (toca o Esc para cerrar)
+const zoom = document.createElement('div'); zoom.id = 'zoom'; zoom.setAttribute('role','dialog'); zoom.setAttribute('aria-modal','true'); zoom.setAttribute('aria-label','Foto ampliada');
+zoom.innerHTML = '<figure><img alt=""><figcaption></figcaption></figure>';
+document.body.appendChild(zoom);
+const zoomImg = zoom.querySelector('img'), zoomCap = zoom.querySelector('figcaption');
+function abrirFoto(src, alt, cap){ zoomImg.src = src; zoomImg.alt = alt; zoomCap.textContent = cap; zoom.classList.add('show'); }
+function cerrarFoto(){ zoom.classList.remove('show'); }
+zoom.addEventListener('click', cerrarFoto);
+document.addEventListener('keydown', e=>{ if(e.key === 'Escape') cerrarFoto(); });
+// barra de progreso: un cuadro por mes (y noviembre), se llena al desplazarse
+const PROG = [...MESES.map(([k])=>k), 'nov'];
+const progEl = document.getElementById('progreso');
+const progSegs = PROG.map(()=>{ const d = document.createElement('span'); d.className = 'seg'; progEl.appendChild(d); return d; });
+const progMes = document.createElement('span'); progMes.id = 'progMes'; progEl.appendChild(progMes);
+function actualizarProgreso(){
+  let idx = -1;
+  if(!document.documentElement.classList.contains('scroll')){ progSegs.forEach(d=> d.classList.remove('on')); progMes.textContent = ''; return; }
+  document.querySelectorAll('.nivel:not(.prox)').forEach((sec, i)=>{ if(sec.getBoundingClientRect().top < innerHeight*0.5) idx = i; });
+  const pr = document.querySelector('.nivel.prox');
+  if(pr && pr.getBoundingClientRect().top < innerHeight*0.5) idx = PROG.length - 1;
+  progSegs.forEach((d, i)=> d.classList.toggle('on', i <= idx));
+  progMes.textContent = idx >= 0 ? PROG[idx].toUpperCase() : '';
+}
+addEventListener('scroll', ()=>{ actualizarProgreso(); if(scrollY > 40) document.getElementById('pista').classList.remove('on'); }, {passive:true});
+// cielo: la luz sigue la hora de CDMX (UTC-6)
+(function(){
+  const el = document.getElementById('tinte');
+  function aplicar(){
+    const h = (new Date().getUTCHours() + 18) % 24;
+    el.className = (h >= 19 || h < 6) ? 'noche' : ((h >= 17 && h < 19) || h === 6) ? 'atardecer' : '';
+  }
+  aplicar(); setInterval(aplicar, 60000);
+})();
+// sonido de tecleo (suave); el audio se prepara al tocar el sobre, que es un gesto del usuario
+let audioCtx = null;
+function prepararSonido(){
+  try{
+    if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if(audioCtx.state === 'suspended') audioCtx.resume();
+  }catch(_){ audioCtx = null; }
+}
+function tic(){
+  if(!audioCtx) return;
+  try{
+    const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+    o.type = 'square'; o.frequency.value = 900; g.gain.value = 0.012;
+    o.connect(g); g.connect(audioCtx.destination);
+    o.start(); o.stop(audioCtx.currentTime + 0.012);
+  }catch(_){}
+}
+// sello al terminar la carta
+function sellar(){
+  if(nota.querySelector('.sello')) return;
+  nota.classList.add('listo');
+  const sl = document.createElement('div'); sl.className = 'sello'; sl.setAttribute('aria-hidden','true');
+  sl.appendChild(pixelHeart()); nota.appendChild(sl);
+}
 </script>
 </body>
 </html>
