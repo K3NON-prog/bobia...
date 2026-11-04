@@ -47,6 +47,10 @@
   }
   @keyframes blink{50%{opacity:0}}
   .bubble.hidden{display:none}
+  /* al terminar de escribir el primer mensaje, el anillo pulsante indica que hay que tocar */
+  #kenonWrap .cue-inicio{position:absolute;left:50%;bottom:100%;transform:translateX(-50%);margin:0 0 -14px;display:none}
+  #kenonWrap.pide .cue-inicio{display:block}
+  #kenonWrap.pide .bubble::after{display:none}
 
   /* ventana tipo Windows 98 */
   .win{
@@ -242,6 +246,7 @@
 <div class="stage" id="stage" tabindex="0" role="region" aria-label="Historia. Pulsa Enter o toca para seguir">
   <div id="kenonWrap">
     <div class="bubble" id="bubble1"></div>
+    <div class="click-zone cue-inicio" aria-hidden="true"><span class="ring"></span></div>
     <p class="sr-only" id="anuncioGlobo" role="status" aria-live="polite"></p>
     <div id="kenon"></div>
   </div>
@@ -330,7 +335,7 @@ function typeText(text, el, done){
 function finishTyping(text, el){
   clearInterval(typeTimer); el.textContent = text; typing = false; typedFull = true; anunciarGlobo(el, text);
 }
-function anunciarGlobo(el, text){ if(el && el.id === 'bubble1') document.getElementById('anuncioGlobo').textContent = text; }
+function anunciarGlobo(el, text){ if(el && el.id === 'bubble1'){ document.getElementById('anuncioGlobo').textContent = text; if(text === HOLA && state === 0) wrap.classList.add('pide'); } }
 
 typeText(HOLA, bubble);
 
@@ -338,6 +343,7 @@ const stageEl = document.getElementById('stage');
 const onStage = ()=>{
   if(state === 0){
     if(typing){ finishTyping(HOLA, bubble); return; }
+    wrap.classList.remove('pide');
     // pasa a la posición nueva y muestra el mensaje
     bubble.classList.add('hidden');
     wrap.classList.add('moved');
@@ -509,7 +515,7 @@ document.getElementById('replay').addEventListener('click', ()=>{
   document.documentElement.classList.remove('scroll');
   document.getElementById('stage').classList.remove('flow');
   window.scrollTo(0,0);
-  clearTimeout(openTimer); sobre.classList.remove('salir'); sobreLabel.classList.remove('salir');
+  wrap.classList.remove('pide'); clearTimeout(openTimer); sobre.classList.remove('salir'); sobreLabel.classList.remove('salir');
   nota.classList.remove('listo'); nota.querySelectorAll('.sello').forEach(x=>x.remove());
   nota.classList.remove('show'); sobre.style.display=''; sobreLabel.style.display=''; letterOpen=false; clearInterval(letterTimer); cartaTexto.textContent='';
   clearInterval(counterTimer); counterTimer = null;
