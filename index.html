@@ -91,7 +91,8 @@
   #stage{z-index:1}
   #stage:focus-visible{outline:3px solid var(--rosa-int);outline-offset:-12px}
   #replay{min-height:44px}
-  html.scroll #replay{top:0;left:0;right:0;min-height:44px;padding:10px 14px;border:0;border-bottom:3px solid var(--ciruela);box-shadow:none;text-align:left;z-index:30}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  html.scroll #replay{top:0;left:0;right:auto;min-height:44px;padding:10px 14px;border:0;border-bottom:3px solid var(--ciruela);box-shadow:none;text-align:left;z-index:30}
   html.scroll #replay:active{transform:none;box-shadow:none}
 
   /* ---- desplazamiento después del contador ---- */
@@ -224,24 +225,25 @@
 </style>
 </head>
 <body>
-<canvas id="bg"></canvas>
+<h1 class="sr-only">Para ti: 9 meses juntos</h1>
+<canvas id="bg" aria-hidden="true"></canvas>
 <div id="tinte" aria-hidden="true"></div>
-<canvas id="trees"></canvas>
-<canvas id="pets"></canvas>
-<canvas id="fx"></canvas>
+<canvas id="trees" aria-hidden="true"></canvas>
+<canvas id="pets" aria-hidden="true"></canvas>
+<canvas id="fx" aria-hidden="true"></canvas>
 <button id="replay" type="button">&lt; REPETIR</button>
 <div id="progreso" aria-hidden="true"></div>
-<div class="stage" id="stage" tabindex="0" role="button" aria-label="Seguir">
+<div class="stage" id="stage" tabindex="0" role="region" aria-label="Historia. Pulsa Enter o toca para seguir">
   <div id="kenonWrap">
     <div class="bubble" id="bubble1"></div>
     <div id="kenon"></div>
   </div>
-    <div class="win" id="win">
+    <div class="win" id="win" role="status">
       <div class="bar"><span>MENSAJE</span><span>x</span></div>
       <div class="body">Ojalá te guste bobia</div>
       <div class="click-zone"><span class="ring"></span></div>
     </div>
-  <canvas id="flowers"></canvas>
+  <canvas id="flowers" aria-hidden="true"></canvas>
   <div id="counter">
     <div id="contador">
       <div class="u"><b id="cMes">0</b><small>MESES</small></div>
@@ -280,7 +282,7 @@
 <div id="pista" aria-hidden="true"><svg width="30" height="18" viewBox="0 0 5 3" shape-rendering="crispEdges"><g fill="currentColor"><rect x="0" y="0" width="5" height="1"/><rect x="1" y="1" width="3" height="1"/><rect x="2" y="2" width="1" height="1"/></g></svg></div>
 <div id="player">
   <div class="bar"><span><img class="nota-icono" alt="Música" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAUCAYAAAC9BQwsAAAA8ElEQVR42sWSS1LDMBBE34x8Csx5HGLnugkUd4ByTFJcIMotpGZhx1U4P4cNvVTpqdUzbZI4UxbVaqVkTlDmfbO26RXnjpJDVTd6GDxpCt8FQ4au686cZzk6md32k2RhhGeB8RAtyNlvP0bnYg5oguMhWlmW+m7bx4YDEGMc11LwoI6HHnb+qP8CJ4WS9wcuuwoWADJY1Esl62cVlEkOIlHkG2DVNHrbvJoDi7qRDAZTdl0LF4y9qpfjRxf1Umlm6uIU86VplNwJAsh8bbubk/tVgCDYtx1YHh7o81+uocTTc6l7TbkICigncByAawv5AW4NbQHrykoZAAAAAElFTkSuQmCC"></span><button id="plToggle" type="button" aria-expanded="true" aria-label="Minimizar reproductor">_</button></div>
-  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/72sfmdpuO5r8cBDgs7MqZZ?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" title="Love - Wave to Earth en Spotify"></iframe>
+  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/72sfmdpuO5r8cBDgs7MqZZ?utm_source=generator" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" title="Love - Wave to Earth en Spotify"></iframe>
 </div>
 </div>
 <script>
@@ -1057,10 +1059,12 @@ function soltarCorazones(host){
 // visor de foto ampliada (toca o Esc para cerrar)
 const zoom = document.createElement('div'); zoom.id = 'zoom'; zoom.setAttribute('role','dialog'); zoom.setAttribute('aria-modal','true'); zoom.setAttribute('aria-label','Foto ampliada');
 zoom.innerHTML = '<figure><img alt=""><figcaption></figcaption></figure>';
+zoom.tabIndex = -1;
 document.body.appendChild(zoom);
 const zoomImg = zoom.querySelector('img'), zoomCap = zoom.querySelector('figcaption');
-function abrirFoto(src, alt, cap){ zoomImg.src = src; zoomImg.alt = alt; zoomCap.textContent = cap; zoom.classList.add('show'); }
-function cerrarFoto(){ zoom.classList.remove('show'); }
+let fotoOrigen = null;
+function abrirFoto(src, alt, cap){ fotoOrigen = document.activeElement; zoomImg.src = src; zoomImg.alt = alt; zoomCap.textContent = cap; zoom.classList.add('show'); zoom.focus(); }
+function cerrarFoto(){ if(!zoom.classList.contains('show')) return; zoom.classList.remove('show'); if(fotoOrigen && fotoOrigen.focus) fotoOrigen.focus(); fotoOrigen = null; }
 zoom.addEventListener('click', cerrarFoto);
 document.addEventListener('keydown', e=>{ if(e.key === 'Escape') cerrarFoto(); });
 // barra de progreso: un cuadro por mes (y noviembre), se llena al desplazarse
