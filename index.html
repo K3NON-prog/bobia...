@@ -125,7 +125,7 @@
   .sobre-ala.der{transform-origin:0 45%}
   @keyframes flota{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
   @keyframes aleteo{from{transform:scaleY(1)}to{transform:scaleY(.45)}}
-  .sobre-label{font-size:clamp(22px,6vw,28px);margin:0 0 14px;text-align:center;width:100%}
+  .sobre-label{font-size:clamp(22px,6vw,28px);margin:0 0 14px;text-align:center;width:100%;color:#000;text-shadow:none}
   .nota{display:none;width:min(340px,86vw);background:var(--crema);border:3px solid var(--ciruela);box-shadow:6px 6px 0 var(--ciruela)}
   .nota.show{display:block}
   .nota .bar{background:linear-gradient(90deg,var(--rosa),var(--lila));color:var(--ciruela);font-family:'Press Start 2P',monospace;font-size:11px;padding:6px 8px;display:flex;justify-content:space-between}
@@ -531,6 +531,7 @@ function drawHill(cols, horizon, amp, color, light, seed, bottomRow){
 }
 
 // gato sentado, negro, con ojos rosas (ver catCells)
+function superIn(x,y,cx,cy,rx,ry){ return Math.pow(Math.abs(x-cx)/rx,2.5) + Math.pow(Math.abs(y-cy)/ry,2.5) <= 1; }
 /* ----- árbol de sakura completo: tronco con raíces, ramas y copa de racimos; cada celda aparece según su "t" ----- */
 function buildTree(cx, ground, rx, ry, seed){
   const r = seeded(seed);
@@ -541,12 +542,13 @@ function buildTree(cx, ground, rx, ry, seed){
   // tronco con raíces en la base, más delgado arriba; vetas de corteza
   for(let y=ground; y>=trunkTop; y--){
     const f = (ground-y)/trunkH;
-    let w = Math.max(8, Math.round(20 - 10*f));
-    if(f < 0.07) w += 4;
+    let w = Math.max(6, Math.round(24 - 17*Math.pow(f,0.8)));   // se afina hacia arriba
+    if(f < 0.09) w += Math.round(6*(1-f/0.09));                 // raíces: base ensanchada
+    const lean = Math.round(2.2*Math.sin(f*3.1 + seed));       // leve curvatura, no recto
     const t = Math.min(1, 0.4*f);
     for(let k=-Math.floor(w/2); k<=Math.floor((w-1)/2); k++){
       const veta = ((k + 3*y) % 11 === 0);
-      cells.push({x:cx+k, y, c: veta ? C.tronco2 : C.tronco, t});
+      cells.push({x:cx+lean+k, y, c: veta ? C.tronco2 : C.tronco, t});
     }
   }
   // ramas gruesas hacia la copa
@@ -560,14 +562,20 @@ function buildTree(cx, ground, rx, ry, seed){
     }
   });
   // copa: unión de racimos redondos (borde orgánico, nada de rectángulo)
-  const lobes = [{x:cx, y:canopyCy - ry*0.35, rr:ry*0.62}];
-  for(let i=0;i<12;i++) lobes.push({ x: cx + (r()*2-1)*rx*0.62, y: canopyCy + (r()*2-1)*ry*0.55, rr: ry*(0.42+0.22*r()) });
-  const top = canopyCy - ry*1.1, bottom = canopyCy + ry*1.15;
+  // racimos sobre el perímetro de la copa: el borde queda redondo y con bultos
+  const lobes = [];
+  for(let i=0;i<11;i++){
+    const a = (i/11)*Math.PI*2 + r()*0.4;
+    lobes.push({ x: cx + Math.cos(a)*rx*0.78, y: canopyCy + Math.sin(a)*ry*0.78, rr: ry*(0.3+0.1*r()) });
+  }
+  const top = canopyCy - ry*1.05, bottom = canopyCy + ry*1.05;
   const canopy = [];
   for(let y=Math.max(0, Math.floor(top)); y<=Math.ceil(bottom); y++){
     for(let x=Math.round(cx-rx); x<=Math.round(cx+rx); x++){
       const px_=x+0.5, py_=y+0.5;
-      if(!lobes.some(l=> ((px_-l.x)/(l.rr*1.15))**2 + ((py_-l.y)/l.rr)**2 <= 1)) continue;
+      const core = superIn(px_, py_, cx, canopyCy, rx*0.92, ry*0.98);   // domo redondeado
+      const bump = lobes.some(l=> ((px_-l.x)/l.rr)**2 + ((py_-l.y)/l.rr)**2 <= 1);
+      if(!core && !bump) continue;
       if(r()<0.025) continue;
       const f = (y-top)/(bottom-top);                // 0 arriba, 1 abajo
       let col;
