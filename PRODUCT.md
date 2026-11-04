@@ -18,7 +18,7 @@ Una intro tipo videojuego en pixel art (un personaje con globo de texto que guí
 ## Operating Context
 - Se publica con GitHub Pages desde el repositorio K3NON-prog/bobia..., rama main. Actualizar la página es subir el index.html.
 - Se abre sobre todo en celular, así que el diseño parte del teléfono.
-- Hay un reproductor de Spotify fijo abajo a la izquierda, incrustado en la página.
+- Hay un reproductor de Spotify fijo abajo a la derecha, incrustado en la página; contraído es un cuadro pequeño con el icono de nota.
 - La fecha del aniversario de 9 meses es el 4 de noviembre de 2026.
 
 ## Capabilities and Constraints

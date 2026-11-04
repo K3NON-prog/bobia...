@@ -49,12 +49,12 @@
   .win.show{display:block}
   .win .bar{
     background:linear-gradient(90deg,var(--rosa),var(--lila));color:var(--ciruela);
-    font-family:'Press Start 2P',monospace;font-size:11px;padding:6px 8px;display:flex;justify-content:space-between;
+    font-family:'Press Start 2P',monospace;font-size:12px;padding:6px 8px;display:flex;justify-content:space-between;
   }
   .win .body{padding:20px 16px 14px;font-size:30px;text-align:center}
   .win .ok{
     display:block;width:max-content;margin:0 auto 14px;padding:6px 26px;text-align:center;background:var(--lila);
-    border:3px solid var(--ciruela);font-family:'Press Start 2P',monospace;font-size:11px;
+    border:3px solid var(--ciruela);font-family:'Press Start 2P',monospace;font-size:12px;
   }
 
   /* contador */
@@ -67,7 +67,7 @@
     font-family:'Press Start 2P',monospace;text-align:center;font-variant-numeric:tabular-nums}
   #contador .u{display:flex;flex-direction:column;align-items:center;gap:12px;min-width:3.4em}
   #contador b{font-weight:normal;font-size:clamp(26px,7vw,50px);color:var(--rosa);text-shadow:3px 3px 0 var(--ciruela)}
-  #contador small{font-family:'Press Start 2P',monospace;font-size:clamp(11px,1.2vw,13px);color:var(--lila);letter-spacing:1px}
+  #contador small{font-family:'Press Start 2P',monospace;font-size:clamp(13px,1.2vw,14px);color:var(--lila);letter-spacing:1px}
   #amandote{font-size:clamp(18px,5.4vw,30px);margin-top:16px;color:var(--crema);text-align:center}
 
   /* flores */
@@ -77,12 +77,13 @@
   /* botón para volver a ver la intro */
   #replay{position:fixed;top:14px;left:14px;z-index:10;padding:6px 10px;background:var(--crema);
     border:3px solid var(--ciruela);box-shadow:4px 4px 0 var(--ciruela);
-    font-family:'Press Start 2P',monospace;font-size:11px;color:var(--ciruela);cursor:pointer}
+    font-family:'Press Start 2P',monospace;font-size:12px;color:var(--ciruela);cursor:pointer}
   #replay:hover{background:var(--lila)}
   #replay:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ciruela)}
   /* capas de fondo */
   #bg,#trees,#pets,#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
   #stage{z-index:1}
+  #stage:focus-visible{outline:3px solid var(--rosa-int);outline-offset:-12px}
   #replay{min-height:44px}
   html.scroll #replay{top:0;left:0;right:0;min-height:44px;padding:10px 14px;border:0;border-bottom:3px solid var(--ciruela);box-shadow:none;text-align:left;z-index:30}
   html.scroll #replay:active{transform:none;box-shadow:none}
@@ -98,7 +99,7 @@
     padding:16px 12px;margin:0 auto 44px;max-width:520px;line-height:1.5}
   /* niveles por mes */
   .nivel{margin-bottom:56px}
-  .nivel-head{font-family:'Press Start 2P',monospace;font-size:11px;display:flex;justify-content:space-between;gap:10px;
+  .nivel-head{font-family:'Press Start 2P',monospace;font-size:12px;display:flex;justify-content:space-between;gap:10px;
     background:var(--ciruela);color:var(--rosa);padding:12px 14px;border:3px solid var(--ciruela);box-shadow:5px 5px 0 var(--rosa-int)}
   .nivel-head .mes{color:var(--crema)}
   .fotos{display:grid;gap:18px;margin-top:22px;align-items:center}
@@ -128,25 +129,25 @@
   .sobre-label{font-size:clamp(22px,6vw,28px);margin:0 0 14px;text-align:center;width:100%;color:#000;text-shadow:none}
   .nota{display:none;width:min(340px,86vw);background:var(--crema);border:3px solid var(--ciruela);box-shadow:6px 6px 0 var(--ciruela)}
   .nota.show{display:block}
-  .nota .bar{background:linear-gradient(90deg,var(--rosa),var(--lila));color:var(--ciruela);font-family:'Press Start 2P',monospace;font-size:11px;padding:6px 8px;display:flex;justify-content:space-between}
+  .nota .bar{background:linear-gradient(90deg,var(--rosa),var(--lila));color:var(--ciruela);font-family:'Press Start 2P',monospace;font-size:12px;padding:6px 8px;display:flex;justify-content:space-between}
   .nota-body{padding:16px 16px 20px;font-size:26px;line-height:1.2;min-height:150px;white-space:pre-wrap;user-select:text;cursor:text}
   /* reproductor fijo */
   #player{position:fixed;right:14px;bottom:14px;z-index:20;width:300px;max-width:calc(100vw - 28px);background:var(--crema);border:3px solid var(--ciruela);box-shadow:5px 5px 0 var(--ciruela)}
-  #player .bar{background:linear-gradient(90deg,var(--rosa),var(--lila));color:var(--ciruela);font-family:'Press Start 2P',monospace;font-size:11px;padding:6px 8px}
+  #player .bar{background:linear-gradient(90deg,var(--rosa),var(--lila));color:var(--ciruela);font-family:'Press Start 2P',monospace;font-size:12px;padding:6px 8px}
   #player .pl-title{font-size:28px;line-height:1}
   #player .bar{display:flex;justify-content:space-between;align-items:center}
-  #player .bar button{font-family:'Press Start 2P',monospace;font-size:11px;background:var(--crema);color:var(--ciruela);border:2px solid var(--ciruela);min-width:44px;min-height:44px;padding:2px 6px;cursor:pointer}
+  #player .bar button{font-family:'Press Start 2P',monospace;font-size:12px;background:var(--crema);color:var(--ciruela);border:2px solid var(--ciruela);min-width:44px;min-height:44px;padding:2px 6px;cursor:pointer}
   #player.mini iframe{display:none}
   #player.mini{box-shadow:3px 3px 0 var(--ciruela);width:auto;min-width:112px}
   #player.mini .bar{padding:6px 8px}
   #player.mini .bar span{font-size:14px}
   #player .nota-icono{display:block;height:22px;width:auto;image-rendering:pixelated;border:0;box-shadow:none;background:none}
   #player.mini .nota-icono{height:20px}
-  #player.mini .bar button{min-width:34px;min-height:34px}
+  #player.mini .bar button{min-width:44px;min-height:44px}
   #player .pl-artist{font-size:20px;color:var(--rosa-int)}
-  #player button{font-family:'Press Start 2P',monospace;font-size:11px;background:var(--lila);border:3px solid var(--ciruela);
+  #player button{font-family:'Press Start 2P',monospace;font-size:12px;background:var(--lila);border:3px solid var(--ciruela);
     padding:7px 9px;color:var(--ciruela);cursor:pointer;margin-top:10px}
-  #player .pl-link{display:inline-block;font-family:'Press Start 2P',monospace;font-size:11px;background:var(--lila);border:3px solid var(--ciruela);
+  #player .pl-link{display:inline-block;font-family:'Press Start 2P',monospace;font-size:12px;background:var(--lila);border:3px solid var(--ciruela);
     padding:7px 9px;color:var(--ciruela);text-decoration:none;margin-top:10px}
   #player .pl-link:hover{background:var(--rosa)}
   #counter{justify-content:flex-start;padding-top:9vh}
@@ -169,7 +170,7 @@
   /* ---- reducir movimiento: si el teléfono lo pide, se quitan efectos decorativos ---- */
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{transition-duration:.01ms!important;transition-delay:0s!important;animation:none!important;scroll-behavior:auto!important}
-    .click-zone .ring{display:none}
+    .click-zone .ring{opacity:1;transform:scale(1.4)}
   }
 </style>
 </head>
@@ -179,7 +180,7 @@
 <canvas id="pets"></canvas>
 <canvas id="fx"></canvas>
 <button id="replay" type="button">&lt; REPETIR</button>
-<div class="stage" id="stage">
+<div class="stage" id="stage" tabindex="0" role="button" aria-label="Seguir">
   <div id="kenonWrap">
     <div class="bubble" id="bubble1"></div>
     <div id="kenon"></div>
@@ -215,7 +216,7 @@
       <div class="sobre" id="sobre" role="button" tabindex="0" aria-label="Abrir la carta"><img class="sobre-ala izq" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXQAAACcCAYAAABvA1AIAAAB40lEQVR42u3csQ2CQBSA4XeGytLC0poSo0NQO4GFA1gZRqB0AGewZgkjM1i6BM5wRgIm31djkLvkz6teikxV3QwxI33XpgAgFo4AQNABEHQABB0AQQcQdAAEHQBBB0DQAQQdAEEHYEpF7m6W5/0yqw/YHmKw+wXAhA4g6AAIOgCCDoCgAwg6AIIOgKADIOgAgg6AoAMwseLfPyB3t0xatm4dMKEDIOgACDoAgg4g6AAIOgCCDoCgAwi6IwAQdAAEHYBfS7k/qOpmiBF3rTxe76znd5t15i6XVXLtgAkdAEEHQNABEHQAQQdA0AEQdAAEHUDQARB0AAQdgJh4l0uMvPvldj2O+n/2ZWmXC2BCB0DQARB0AAQdQNABEHQABB0AQQcQdEcAIOgACDoAgg6AoAMIOgCCDoCgAyDoAIIOgKADIOgACDoAgg4g6ADMTzH2C/quTTnPn84xuBYAEzqAoAMg6AAIOgCCDoCgAwg6AIIOgKADIOgAgg4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMCXPp0mHYuF37TBAAAAAElFTkSuQmCC"><img class="sobre-ala der" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXQAAACcCAYAAABvA1AIAAAB0klEQVR42u3csQnCQBiG4e/EGSydIcElUmcYcYTgMNZZQswMli4RZ7hCPOPz1EcICbz8XPGXAJAk6YbL2tL7LPNUas7v/EKAbRB0AEEHQNABEHQABB1A0AEQdAAEHQBBBxB0AH7V3icAYjdLkuRxOzf1/v2Y1YQOEFcuAAg6AIIOgKADIOgAgg6AoAMg6AAIOoCgAxC7XAC+q7XdLCZ0AAQdQNABEHQABB0AQQdA0AEEHQBBB0DQARB0gNjlAvAH7s9X1fnT8VB1vh+vVeeXeSomdIC4cgFA0AEQdAAEHQBBBxB0AAQdAEEHQNABBB2A2OUCkJ/azVLr07tZTOgAceUCgKADIOgACDoAgg4g6AAIOgCCDoCgAwg6AIIOgKADIOgAgg6AoAMg6AAIOgCCDiDoAAg6AIIOgKAD/JfiEwBb1Q2X9ZPPX+apmNABEHQABB1A0AEQdAAEHQBBBxB0AAQdAEEHQNABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACa8wYiBBvbSzL+vQAAAABJRU5ErkJggg=="><img class="sobre-cuerpo" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXQAAACcCAYAAABvA1AIAAACqUlEQVR42u3cMUoDQQCF4RfxKB5ASSc5gHVKzyBoJVYWqcRKwQNYWcnWHmCxC3oAK0svoSdQGHB0Zvf76pDE2fgz1VtkZvaPLj4DzMLr09ViTn/vjkcOIOgACDoAgg6AoAMIOgCCDoCgAyDoAIIOgKAD8J92HcHPXoZzhwCNOFhfOwQ3dABBB0DQARB0AAQdQNABEHQABB0AQQdA0AEEHYDYcunT7cNz0etPjw8dGlT6/8INHUDQARB0AAQdAEEHEHQABB0AQQdA0AEQdABBByC2XGKbIrZf8PvHDR0AQQcQdAAEHQBBB0DQAQQdAEEHQNABEHQABB0gtlyI7ZdfsF1fVn3/5bDp+vvYZsENHQBBBxB0AAQdAEEHQNABBB0AQQdA0AEQdABBByC2XMgct19Kt1Bqb5vU3mbp/Xxss7ihAyDoAAg6AIIOIOgACDoAgg6AoAMg6ACCDoCgAxBbLmQK2y/pfJul9+eLGzoAgg6AoAMg6ACCDoCgAyDoAAg6AIIOIOgACDoAseVCmtx+GTaxzfK9ZeH52GbBDR0AQQcQdAAEHQBBB0DQAQQdAEEHQNABEHQAQQcgtlyYhNVqr+j12/ePsg+4OSl7/dldWwdU+P1Lz6f0/MfxzY8WN3QAQQdA0AEQdAAEHUDQARB0AAQdAEEHEHQABB2A2HIhzW2zNKf29kvp+3f+fG2/uKEDIOgACDoAgg4g6AAIOgCCDoCgAyDoAIIOgKADEFsuJJnANksa237x+4ntFzd0AAQdAEEHQNABBB0AQQdA0AEQdABBB0DQARB0AGLLJbZZwPYLbugAgg6AoAMg6AAIOoCgAyDoAAg6AIIOIOgACDoAseXSgfvHsev3B9zQARB0AAQdAEEHEHQABB0AQQdA0AEQdABBB0DQAfgTXxp1V8oZlNvHAAAAAElFTkSuQmCC"></div>
       </div>
             <div class="nota" id="nota">
-        <div class="bar"><span>para bobia.txt</span><span>x</span></div>
+        <div class="bar"><span>para bobia.txt</span></div>
         <div class="nota-body" id="cartaTexto"></div>
       </div>
     </div>
@@ -227,7 +228,7 @@
 </section>
 <div id="player">
   <div class="bar"><span><img class="nota-icono" alt="Música" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAUCAYAAAC9BQwsAAAA8ElEQVR42sWSS1LDMBBE34x8Csx5HGLnugkUd4ByTFJcIMotpGZhx1U4P4cNvVTpqdUzbZI4UxbVaqVkTlDmfbO26RXnjpJDVTd6GDxpCt8FQ4au686cZzk6md32k2RhhGeB8RAtyNlvP0bnYg5oguMhWlmW+m7bx4YDEGMc11LwoI6HHnb+qP8CJ4WS9wcuuwoWADJY1Esl62cVlEkOIlHkG2DVNHrbvJoDi7qRDAZTdl0LF4y9qpfjRxf1Umlm6uIU86VplNwJAsh8bbubk/tVgCDYtx1YHh7o81+uocTTc6l7TbkICigncByAawv5AW4NbQHrykoZAAAAAElFTkSuQmCC"></span><button id="plToggle" type="button" aria-expanded="true" aria-label="Minimizar reproductor">_</button></div>
-  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5mtTAScDytxMMqZj14NmlN?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" title="Love - Wave to Earth en Spotify"></iframe>
+  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/72sfmdpuO5r8cBDgs7MqZZ?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" title="Love - Wave to Earth en Spotify"></iframe>
 </div>
 </div>
 <script>
@@ -269,7 +270,8 @@ function finishTyping(text, el){
 
 typeText(HOLA, bubble);
 
-document.getElementById('stage').addEventListener('click', ()=>{
+const stageEl = document.getElementById('stage');
+const onStage = ()=>{
   if(state === 0){
     if(typing){ finishTyping(HOLA, bubble); return; }
     // pasa a la posición nueva y muestra el mensaje
@@ -294,7 +296,9 @@ document.getElementById('stage').addEventListener('click', ()=>{
   if(state === 3 && counterReady){
     // el contador ya está visible; nada más que hacer
   }
-});
+};
+stageEl.addEventListener('click', onStage);
+stageEl.addEventListener('keydown', e=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); onStage(); } });
 
 /* ===== Flores pixel art que se acercan y se desvanecen ===== */
 const FLOWER = [
@@ -857,11 +861,11 @@ MESES.forEach(([k,nombre],i)=>{
   sec.innerHTML = '<div class="nivel-head"><span class="mes">' + nombre + '</span><span class="corazon"></span></div>';
   sec.querySelector('.corazon').appendChild(pixelHeart());
   const grid = document.createElement('div'); grid.className = 'fotos n' + fotos.length;
-  fotos.forEach(f=>{
+  fotos.forEach((f, k)=>{
     const fig = document.createElement('figure'); fig.className = 'foto';
     const ph = document.createElement('div'); ph.className = 'ph';
     ph.style.aspectRatio = f.w + ' / ' + f.h;          // el marco toma la proporción de la foto
-    const img = new Image(); img.src = f.src; img.alt = 'Foto de ' + nombre.toLowerCase(); img.loading = 'lazy';
+    const img = new Image(); img.src = f.src; img.alt = 'Foto ' + (k+1) + ' de ' + nombre.toLowerCase(); img.loading = 'lazy';
     ph.appendChild(img); fig.appendChild(ph); grid.appendChild(fig); revealObs.observe(fig);
   });
   sec.appendChild(grid); niveles.appendChild(sec);
@@ -907,7 +911,7 @@ function enterScroll(){
   el.style.backgroundPosition = pos(0);
   const obs = new IntersectionObserver(es => es.forEach(e => {
     clearInterval(t); t = null;
-    if(e.isIntersecting){
+    if(e.isIntersecting && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)){
       t = setInterval(() => { i = (i + 1) % BESO_N; el.style.backgroundPosition = pos(i); }, BESO_MS);
     }
   }), {threshold: 0.3});
