@@ -73,7 +73,7 @@
   #contador .u{display:flex;flex-direction:column;align-items:center;gap:12px;min-width:3.4em}
   #contador b{font-weight:normal;font-size:clamp(26px,7vw,50px);color:var(--rosa);text-shadow:3px 3px 0 var(--ciruela)}
   #contador small{font-family:'Press Start 2P',monospace;font-size:clamp(11px,1.2vw,13px);color:var(--lila);letter-spacing:1px}
-  #amandote{font-size:44px;margin-top:30px;color:var(--crema)}
+  #amandote{font-size:clamp(18px,5.4vw,30px);margin-top:16px;color:var(--crema);text-align:center}
 
   /* flores */
   #flowers{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;display:none}
@@ -121,6 +121,7 @@
   .carta-escena{display:flex;align-items:flex-end;justify-content:center;gap:18px;flex-wrap:wrap}
   .sprite-carta{width:240px;height:392px;flex:0 0 auto;background-repeat:no-repeat;background-size:1920px 392px;background-position:0 0}
   .carta-caja{display:flex;flex-direction:column;align-items:center;padding-bottom:40px;min-width:240px}
+  @media (max-width:700px){ .carta-escena{flex-direction:column;align-items:center} .carta-caja{width:100%;min-width:0} }
   .sobre{position:relative;width:min(248px,72vw);aspect-ratio:31/13;margin:0 auto;cursor:pointer;animation:flota 2.6s ease-in-out infinite}
   .sobre:focus-visible{outline:3px dashed var(--rosa-int);outline-offset:6px}
   .sobre img{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;pointer-events:none}
@@ -129,7 +130,7 @@
   .sobre-ala.der{transform-origin:0 45%}
   @keyframes flota{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
   @keyframes aleteo{from{transform:scaleY(1)}to{transform:scaleY(.45)}}
-  .sobre-label{font-size:22px;margin-top:12px;text-align:center}
+  .sobre-label{font-size:clamp(22px,6vw,28px);margin:0 0 14px;text-align:center;width:100%}
   .nota{display:none;width:min(340px,86vw);background:var(--crema);border:3px solid var(--ciruela);box-shadow:6px 6px 0 var(--ciruela)}
   .nota.show{display:block}
   .nota .bar{background:linear-gradient(90deg,var(--rosa),var(--lila));color:var(--ciruela);font-family:'Press Start 2P',monospace;font-size:11px;padding:6px 8px;display:flex;justify-content:space-between}
@@ -211,10 +212,10 @@
   <div class="carta-escena">
     <div class="sprite-carta" id="kenonCarta"></div>
     <div class="carta-caja">
+      <p class="sobre-label" id="sobreLabel">toca el sobre</p>
       <div class="sobre" id="sobre" role="button" tabindex="0" aria-label="Abrir la carta"><img class="sobre-ala izq" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXQAAACcCAYAAABvA1AIAAAB40lEQVR42u3csQ2CQBSA4XeGytLC0poSo0NQO4GFA1gZRqB0AGewZgkjM1i6BM5wRgIm31djkLvkz6teikxV3QwxI33XpgAgFo4AQNABEHQABB0AQQcQdAAEHQBBB0DQAQQdAEEHYEpF7m6W5/0yqw/YHmKw+wXAhA4g6AAIOgCCDoCgAwg6AIIOgKADIOgAgg6AoAMwseLfPyB3t0xatm4dMKEDIOgACDoAgg4g6AAIOgCCDoCgAwi6IwAQdAAEHYBfS7k/qOpmiBF3rTxe76znd5t15i6XVXLtgAkdAEEHQNABEHQAQQdA0AEQdAAEHUDQARB0AAQdgJh4l0uMvPvldj2O+n/2ZWmXC2BCB0DQARB0AAQdQNABEHQABB0AQQcQdEcAIOgACDoAgg6AoAMIOgCCDoCgAyDoAIIOgKADIOgACDoAgg4g6ADMTzH2C/quTTnPn84xuBYAEzqAoAMg6AAIOgCCDoCgAwg6AIIOgKADIOgAgg4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMCXPp0mHYuF37TBAAAAAElFTkSuQmCC"><img class="sobre-ala der" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXQAAACcCAYAAABvA1AIAAAB0klEQVR42u3csQnCQBiG4e/EGSydIcElUmcYcYTgMNZZQswMli4RZ7hCPOPz1EcICbz8XPGXAJAk6YbL2tL7LPNUas7v/EKAbRB0AEEHQNABEHQABB1A0AEQdAAEHQBBBxB0AH7V3icAYjdLkuRxOzf1/v2Y1YQOEFcuAAg6AIIOgKADIOgAgg6AoAMg6AAIOoCgAxC7XAC+q7XdLCZ0AAQdQNABEHQABB0AQQdA0AEEHQBBB0DQARB0gNjlAvAH7s9X1fnT8VB1vh+vVeeXeSomdIC4cgFA0AEQdAAEHQBBBxB0AAQdAEEHQNABBB2A2OUCkJ/azVLr07tZTOgAceUCgKADIOgACDoAgg4g6AAIOgCCDoCgAwg6AIIOgKADIOgAgg6AoAMg6AAIOgCCDiDoAAg6AIIOgKAD/JfiEwBb1Q2X9ZPPX+apmNABEHQABB1A0AEQdAAEHQBBBxB0AAQdAEEHQNABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACa8wYiBBvbSzL+vQAAAABJRU5ErkJggg=="><img class="sobre-cuerpo" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXQAAACcCAYAAABvA1AIAAACqUlEQVR42u3cMUoDQQCF4RfxKB5ASSc5gHVKzyBoJVYWqcRKwQNYWcnWHmCxC3oAK0svoSdQGHB0Zvf76pDE2fgz1VtkZvaPLj4DzMLr09ViTn/vjkcOIOgACDoAgg6AoAMIOgCCDoCgAyDoAIIOgKAD8J92HcHPXoZzhwCNOFhfOwQ3dABBB0DQARB0AAQdQNABEHQABB0AQQdA0AEEHYDYcunT7cNz0etPjw8dGlT6/8INHUDQARB0AAQdAEEHEHQABB0AQQdA0AEQdABBByC2XGKbIrZf8PvHDR0AQQcQdAAEHQBBB0DQAQQdAEEHQNABEHQABB0gtlyI7ZdfsF1fVn3/5bDp+vvYZsENHQBBBxB0AAQdAEEHQNABBB0AQQdA0AEQdABBByC2XMgct19Kt1Bqb5vU3mbp/Xxss7ihAyDoAAg6AIIOIOgACDoAgg6AoAMg6ACCDoCgAxBbLmQK2y/pfJul9+eLGzoAgg6AoAMg6ACCDoCgAyDoAAg6AIIOIOgACDoAseVCmtx+GTaxzfK9ZeH52GbBDR0AQQcQdAAEHQBBB0DQAQQdAEEHQNABEHQAQQcgtlyYhNVqr+j12/ePsg+4OSl7/dldWwdU+P1Lz6f0/MfxzY8WN3QAQQdA0AEQdAAEHUDQARB0AAQdAEEHEHQABB2A2HIhzW2zNKf29kvp+3f+fG2/uKEDIOgACDoAgg4g6AAIOgCCDoCgAyDoAIIOgKADEFsuJJnANksa237x+4ntFzd0AAQdAEEHQNABBB0AQQdA0AEQdABBB0DQARB0AGLLJbZZwPYLbugAgg6AoAMg6AAIOoCgAyDoAAg6AIIOIOgACDoAseXSgfvHsev3B9zQARB0AAQdAEEHEHQABB0AQQdA0AEQdABBB0DQAfgTXxp1V8oZlNvHAAAAAElFTkSuQmCC"></div>
       </div>
-      <p class="sobre-label" id="sobreLabel">toca el sobre</p>
-      <div class="nota" id="nota">
+            <div class="nota" id="nota">
         <div class="bar"><span>para bobia.txt</span><span>x</span></div>
         <div class="nota-body" id="cartaTexto"></div>
       </div>
