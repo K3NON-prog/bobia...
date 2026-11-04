@@ -12,11 +12,6 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;overflow:hidden;background:var(--rosa);font-family:'VT323',monospace;color:var(--ciruela);cursor:pointer;user-select:none}
   /* textura de píxeles en el fondo */
-  body::before{
-    content:"";position:fixed;inset:0;pointer-events:none;
-    background-image:radial-gradient(var(--lila) 2px, transparent 2px);
-    background-size:24px 24px;opacity:.35;
-  }
   .stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
 
   /* personaje + globo */
@@ -455,14 +450,16 @@ document.getElementById('replay').addEventListener('click', ()=>{
   typeText(HOLA, bubble);
 });
 
-/* ===== Fondo: pasto, flores, gatos, cuyos, árboles de sakura, estrellas, corazones y pétalos ===== */
+/* ===== Fondo: cielo en degradado pixel, colinas en dos planos, árboles de sakura, pasto, estrellas, corazones y pétalos con viento ===== */
 const bgC = document.getElementById('bg'), trC = document.getElementById('trees'), fxC = document.getElementById('fx');
 const bctx = bgC.getContext('2d'), tctx = trC.getContext('2d'), fctx = fxC.getContext('2d');
 let S = 4;
 const C = {
   rosa:'#F7C6D9', rosaInt:'#E05C93', lila:'#D9C8F2', ciruela:'#3A1A2E', crema:'#FFF6EE',
-  pale:'#FFE1EC', tronco:'#6B3D55', kk:'#2A1A26', tan:'#D9A878', tan2:'#8A5A3C',
-  pasto:'#4F7D4A', pasto2:'#7FAE78'
+  pale:'#FFE1EC', tronco:'#6B3D55', tronco2:'#54293F', kk:'#2A1A26', tan:'#D9A878', tan2:'#8A5A3C',
+  pasto:'#4F7D4A', pasto2:'#7FAE78', pink2:'#EB8FB5',
+  cielo0:'#BFA6E6', cielo1:'#D9C8F2', cielo2:'#F7C6D9', cielo3:'#FFE1EC',
+  colina1:'#E9C3DE', colina1L:'#F6DCEC', colina2:'#D9A6C8'
 };
 const REDUCE = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
 const GROW_MS = REDUCE ? 1 : 4500;
@@ -507,20 +504,50 @@ function cuyoCells(){
   });
 }
 
-/* ----- árbol de sakura completo: tronco, ramas y copa ancha; cada celda aparece según su "t" ----- */
-function superIn(x,y,cx,cy,rx,ry){ return Math.pow(Math.abs(x-cx)/rx,2.5) + Math.pow(Math.abs(y-cy)/ry,2.5) <= 1; }
+/* ----- cielo: bandas de color con transición en damero (técnica clásica de pixel art) ----- */
+function drawSky(cols, rows, W){
+  const bands = [[0,C.cielo0],[0.2,C.cielo1],[0.46,C.cielo2],[0.68,C.cielo3]];
+  const at = bands.map(([f])=> Math.round(f*rows));
+  for(let y=0;y<rows;y++){
+    let idx=0; for(let i=1;i<bands.length;i++) if(y>=at[i]) idx=i;
+    const bi = at.indexOf(y);
+    if(bi>0){
+      for(let x=0;x<cols;x++){ bctx.fillStyle = (x+y)%2 ? bands[bi-1][1] : bands[bi][1]; bctx.fillRect(x*S, y*S, S, S); }
+    } else {
+      bctx.fillStyle = bands[idx][1]; bctx.fillRect(0, y*S, W, S);
+    }
+  }
+}
+
+/* ----- colina lejana: silueta ondulada con una franja clara arriba ----- */
+function drawHill(cols, horizon, amp, color, light, seed, bottomRow){
+  const r = seeded(seed);
+  const f1 = 0.03 + r()*0.02, f2 = 0.085 + r()*0.04, p1 = r()*6.28, p2 = r()*6.28;
+  for(let x=0;x<cols;x++){
+    const k = Math.max(0, Math.min(1, 0.5 + 0.32*Math.sin(x*f1+p1) + 0.18*Math.sin(x*f2+p2)));
+    const top = Math.round(horizon - amp*k);
+    for(let y=top; y<=bottomRow; y++) px(x, y, y===top ? light : color);
+  }
+}
+
+// gato sentado, negro, con ojos rosas (ver catCells)
+/* ----- árbol de sakura completo: tronco con raíces, ramas y copa de racimos; cada celda aparece según su "t" ----- */
 function buildTree(cx, ground, rx, ry, seed){
   const r = seeded(seed);
   const cells = [];
-  const canopyCy = 2 + ry;                       // la copa llega hasta arriba de la pantalla
-  const trunkTop = Math.round(canopyCy + ry*0.35);   // el tronco entra en la copa
-  const trunkH = ground - trunkTop;
-  // tronco grueso en la base, más delgado arriba; crece desde el suelo
+  const canopyCy = 2 + ry;                          // la copa llega hasta arriba de la pantalla
+  const trunkTop = Math.round(canopyCy + ry*0.3);
+  const trunkH = Math.max(1, ground - trunkTop);
+  // tronco con raíces en la base, más delgado arriba; vetas de corteza
   for(let y=ground; y>=trunkTop; y--){
     const f = (ground-y)/trunkH;
-    const w = Math.max(8, Math.round(22 - 12*f));   // troncos más gruesos
-    const t = Math.min(1, 0.45*f);
-    for(let k=-Math.floor(w/2); k<=Math.floor((w-1)/2); k++) cells.push({x:cx+k, y, c:C.tronco, t});
+    let w = Math.max(8, Math.round(20 - 10*f));
+    if(f < 0.07) w += 4;
+    const t = Math.min(1, 0.4*f);
+    for(let k=-Math.floor(w/2); k<=Math.floor((w-1)/2); k++){
+      const veta = ((k + 3*y) % 11 === 0);
+      cells.push({x:cx+k, y, c: veta ? C.tronco2 : C.tronco, t});
+    }
   }
   // ramas gruesas hacia la copa
   [[-0.8,-0.5],[-0.45,-0.9],[0.05,-0.95],[0.5,-0.7],[0.85,-0.25],[-0.15,-0.35]].forEach(([u,v])=>{
@@ -532,23 +559,25 @@ function buildTree(cx, ground, rx, ry, seed){
       for(let k=0;k<3;k++) cells.push({x:x+k, y, c:C.tronco, t});
     }
   });
-  // copa ancha de flores: aparece de abajo hacia arriba
-  const top = canopyCy - ry, canopy = [];
-  // centros de racimos: cada celda toma el color del racimo más cercano
-  const PALN = [C.rosa, C.rosa, C.pale, C.pale, C.pale, C.pale, C.rosaInt, C.crema];
-  const clumps = Array.from({length: 260}, ()=>({
-    x: cx + (r()*2-1)*rx, y: canopyCy + (r()*2-1)*ry, col: PALN[Math.floor(r()*PALN.length)]
-  }));
-  const nearest = (x,y)=>{ let best=null, bd=1e9; for(const c of clumps){ const d=(c.x-x)**2 + (c.y-y)**2; if(d<bd){ bd=d; best=c; } } return best.col; };
-  for(let y=Math.round(top); y<=Math.round(canopyCy+ry); y++){
-    const k = 0.85 + 0.2*r();                    // borde irregular
+  // copa: unión de racimos redondos (borde orgánico, nada de rectángulo)
+  const lobes = [{x:cx, y:canopyCy - ry*0.35, rr:ry*0.62}];
+  for(let i=0;i<12;i++) lobes.push({ x: cx + (r()*2-1)*rx*0.62, y: canopyCy + (r()*2-1)*ry*0.55, rr: ry*(0.42+0.22*r()) });
+  const top = canopyCy - ry*1.1, bottom = canopyCy + ry*1.15;
+  const canopy = [];
+  for(let y=Math.max(0, Math.floor(top)); y<=Math.ceil(bottom); y++){
     for(let x=Math.round(cx-rx); x<=Math.round(cx+rx); x++){
-      if(!superIn(x+0.5, y+0.5, cx, canopyCy, rx*k, ry)) continue;
-      if(r()<0.03) continue;
-      const col = r()<0.12 ? PALN[Math.floor(r()*PALN.length)] : nearest(x, y);
-      const t = Math.min(1, 0.5 + 0.5*(1-(y-top)/(2*ry)) + r()*0.05);
+      const px_=x+0.5, py_=y+0.5;
+      if(!lobes.some(l=> ((px_-l.x)/(l.rr*1.15))**2 + ((py_-l.y)/l.rr)**2 <= 1)) continue;
+      if(r()<0.025) continue;
+      const f = (y-top)/(bottom-top);                // 0 arriba, 1 abajo
+      let col;
+      const q = r();
+      if(f < 0.3)       col = q<0.4 ? C.crema : q<0.8 ? C.pale : C.rosa;        // luz arriba
+      else if(f < 0.7)  col = q<0.35 ? C.pale : q<0.75 ? C.rosa : q<0.9 ? C.crema : C.rosaInt; // medio
+      else              col = q<0.4 ? C.rosa : q<0.75 ? C.pink2 : C.rosaInt;   // sombra abajo
+      const t = Math.min(1, 0.5 + 0.5*(1-f) + r()*0.05);   // crece de abajo hacia arriba
       cells.push({x,y,c:col,t});
-      canopy.push({x,y});
+      canopy.push({x,y,f});
     }
   }
   return {cells, canopy};
@@ -564,7 +593,11 @@ function buildTrees(){
     buildTree(offset, ground, rx, ry, 17),
     buildTree(cols-1-offset, ground, rx, ry, 991)
   ];
-  trees.forEach(tr=> tr.canopyVis = tr.canopy.filter(c=> c.x>=0 && c.x<cols && c.y>=0 && c.y<rows));
+  trees.forEach(tr=>{
+    tr.canopyVis = tr.canopy.filter(c=> c.x>=0 && c.x<cols && c.y>=0 && c.y<rows);
+    const low = tr.canopyVis.filter(c=> c.f > 0.5);
+    tr.canopyLow = low.length ? low : tr.canopyVis;   // los pétalos se desprenden de la parte baja
+  });
   allCells = trees.flatMap(tr=> tr.cells).sort((a,b)=> a.t-b.t);
   drawIdx = 0; growStart = performance.now(); treesDone = false; treePetals = [];
   tctx.clearRect(0,0,trC.width,trC.height);
@@ -580,11 +613,11 @@ function drawTrees(now){
   if(p >= 1) treesDone = true;
 }
 function makeTreePetal(){
-  const pool = trees.filter(t=> t.canopyVis && t.canopyVis.length);
+  const pool = trees.filter(t=> t.canopyLow && t.canopyLow.length);
   if(!pool.length) return null;
   const tr = pool[Math.floor(Math.random()*pool.length)];
-  const c = tr.canopyVis[Math.floor(Math.random()*tr.canopyVis.length)];
-  return {bx:c.x*S, y:c.y*S, sp:0.5+Math.random()*0.6, sw:6+Math.random()*10, ph:Math.random()*6.28, c: Math.random()<0.5 ? '#EB8FB5' : C.crema};
+  const c = tr.canopyLow[Math.floor(Math.random()*tr.canopyLow.length)];
+  return {bx:c.x*S, y:c.y*S, sp:0.45+Math.random()*0.55, sw:4+Math.random()*8, ph:Math.random()*6.28, c: Math.random()<0.5 ? C.pink2 : C.crema};
 }
 
 function drawBackground(){
@@ -592,8 +625,16 @@ function drawBackground(){
   bgC.width=W; bgC.height=H; trC.width=W; trC.height=H; fxC.width=W; fxC.height=H;
   bctx.clearRect(0,0,W,H);
   const cols=Math.ceil(W/S), rows=Math.ceil(H/S);
-  // pasto
-  for(let x=0;x<cols;x++){ px(x, rows-2, C.pasto2); px(x, rows-1, C.pasto); }
+  drawSky(cols, rows, cols*S);
+  // colinas: una lejana y otra más cercana, para dar profundidad
+  drawHill(cols, Math.round(rows*0.58), Math.round(rows*0.10), C.colina1, C.colina1L, 5, rows-3);
+  drawHill(cols, Math.round(rows*0.70), Math.round(rows*0.07), C.colina2, C.colina2, 23, rows-3);
+  // pasto con tufos irregulares
+  const gr = seeded(41);
+  for(let x=0;x<cols;x++){
+    if(gr() < 0.4) px(x, rows-3, C.pasto2);
+    px(x, rows-2, C.pasto2); px(x, rows-1, C.pasto);
+  }
   // flores sobre el pasto, lejos del centro
   [0.05,0.16,0.25,0.36,0.64,0.75,0.84,0.95].forEach(f=>{
     drawCells(FLOWER_CELLS, Math.round(cols*f)-4, rows-2-9);
@@ -630,6 +671,9 @@ let lastT = performance.now();
 function fxLoop(now){
   const dt = Math.min(50, now-lastT)/16.7; lastT = now;
   const t = now/1000, H = innerHeight;
+  const calm = REDUCE ? 0.25 : 1;
+  // ráfaga de viento lenta y compartida: empuja pétalos y corazones hacia la derecha
+  const gust = REDUCE ? 0 : Math.pow(0.5+0.5*Math.sin(t*0.45), 2);
   drawTrees(now);
   fctx.clearRect(0,0,fxC.width,fxC.height);
   for(const s of stars){
@@ -638,22 +682,36 @@ function fxLoop(now){
   }
   fctx.globalAlpha = 0.9;
   for(const h of hearts){
-    h.y -= h.sp*dt*(REDUCE ? 0.25 : 1);
+    h.y -= h.sp*dt*calm;
     if(h.y < -20) Object.assign(h, newHeart(false));
-    const x = h.x + Math.sin(t*1.2 + h.ph)*h.sw;
+    const x = h.x + Math.sin(t*1.2 + h.ph)*h.sw + gust*40;
     drawHeart(Math.round(x/S)*S, Math.round(h.y/S)*S, h.c);
   }
-  // pétalos: caen desde la copa cuando los árboles ya crecieron
-  if(treesDone && treePetals.length < 70 && Math.random() < 0.5){
+  // pétalos: caen desde la parte baja de la copa cuando los árboles ya crecieron
+  if(treesDone && treePetals.length < 90 && Math.random() < 0.5){
     const np = makeTreePetal(); if(np) treePetals.push(np);
   }
   fctx.globalAlpha = 0.85;
   for(const p of treePetals){
-    p.y += p.sp*dt*(REDUCE ? 0.25 : 1);
-    if(p.y > H+10){ const np = makeTreePetal(); if(np) Object.assign(p, np); }
-    const x = p.bx + Math.sin(t*1.4 + p.ph)*p.sw;
+    p.y += p.sp*dt*calm;
+    if(p.y > H+10){ const np = makeTreePetal(); if(np) Object.assign(p, np); continue; }
+    const drift = gust * (30 + 60*(p.y/H));          // el viento los lleva más lejos según caen
+    const x = p.bx + Math.sin(t*1.4 + p.ph)*p.sw + drift;
+    const xs = Math.round(x/S)*S, ys = Math.round(p.y/S)*S;
     fctx.fillStyle = p.c;
-    fctx.fillRect(Math.round(x/S)*S, Math.round(p.y/S)*S, S*2, S*2);
+    // el pétalo alterna dos formas: parece girar al caer
+    if(Math.floor(t*3 + p.ph) % 2 === 0){ fctx.fillRect(xs,ys,S*2,S); fctx.fillRect(xs,ys+S,S,S); }
+    else { fctx.fillRect(xs,ys,S,S); fctx.fillRect(xs+S,ys+S,S,S); }
+  }
+  // destellos de flor en la copa
+  if(treesDone && !REDUCE){
+    fctx.globalAlpha = 0.7; fctx.fillStyle = C.crema;
+    for(let i=0;i<3;i++){
+      const tr = trees[Math.random()<0.5 ? 0 : 1];
+      if(!tr || !tr.canopyVis.length) continue;
+      const c = tr.canopyVis[Math.floor(Math.random()*tr.canopyVis.length)];
+      fctx.fillRect(c.x*S, c.y*S, S, S);
+    }
   }
   fctx.globalAlpha = 1;
   requestAnimationFrame(fxLoop);
