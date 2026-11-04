@@ -212,6 +212,15 @@
   .nota{position:relative}
   .nota.listo .nota-body{padding-bottom:58px}
   .sello{position:absolute;left:12px;bottom:12px;background:var(--crema);border:3px solid var(--rosa-int);padding:6px 8px;transform:rotate(-8deg);animation:entra .3s steps(3) both;pointer-events:none}
+
+  /* ---- ajustes de teléfono (P1) ---- */
+  @media (max-width:600px){
+    #kenonWrap.moved{left:50%;bottom:3vh}
+    .win{top:33%}
+  }
+  .nivel{scroll-margin-top:64px}
+  #player{transition:transform .3s steps(4)}
+  html.leyendo-carta #player{transform:translate3d(0,150%,0)}
 </style>
 </head>
 <body>
@@ -1062,9 +1071,13 @@ const progMes = document.createElement('span'); progMes.id = 'progMes'; progEl.a
 function actualizarProgreso(){
   let idx = -1;
   if(!document.documentElement.classList.contains('scroll')){ progSegs.forEach(d=> d.classList.remove('on')); progMes.textContent = ''; return; }
-  document.querySelectorAll('.nivel:not(.prox)').forEach((sec, i)=>{ if(sec.getBoundingClientRect().top < innerHeight*0.5) idx = i; });
+  const mid = innerHeight*0.5, meses = document.querySelectorAll('.nivel:not(.prox)');
+  // el mes que está justo en la mitad de la pantalla
+  meses.forEach((sec, i)=>{ const r = sec.getBoundingClientRect(); if(r.top <= mid && r.bottom > mid) idx = i; });
+  // si cae entre dos meses, el último que ya pasó
+  if(idx < 0) meses.forEach((sec, i)=>{ if(sec.getBoundingClientRect().top <= mid) idx = i; });
   const pr = document.querySelector('.nivel.prox');
-  if(pr && pr.getBoundingClientRect().top < innerHeight*0.5) idx = PROG.length - 1;
+  if(pr && pr.getBoundingClientRect().top <= mid) idx = PROG.length - 1;
   progSegs.forEach((d, i)=> d.classList.toggle('on', i <= idx));
   progMes.textContent = idx >= 0 ? PROG[idx].toUpperCase() : '';
 }
@@ -1095,6 +1108,9 @@ function tic(){
     o.start(); o.stop(audioCtx.currentTime + 0.012);
   }catch(_){}
 }
+// el reproductor se oculta mientras se lee la carta, para que no tape el texto
+const notaObs = new IntersectionObserver(es => es.forEach(e => document.documentElement.classList.toggle('leyendo-carta', e.isIntersecting)), {threshold: 0.15});
+notaObs.observe(nota);
 // sello al terminar la carta
 function sellar(){
   if(nota.querySelector('.sello')) return;
